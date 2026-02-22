@@ -7,6 +7,10 @@ import { useUser } from '@auth0/nextjs-auth0';
 const LandingPage = () => {
   const { user } = useUser();
 
+  const handleAuth = (type: 'band' | 'venue') => {
+    window.location.href = `/auth/login?screen_hint=signup&targetRole=${type}`;
+  };
+
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-purple-500">
       {/* Navigation */}
@@ -63,7 +67,10 @@ const LandingPage = () => {
               Book your next local gig or national tour today! We handle your I-9s, contracts, technical riders and payouts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-purple-600 hover:bg-purple-500 text-white px-8 py-4 text-xl font-black uppercase italic transition-all transform hover:-translate-y-1 shadow-xl shadow-purple-900/20">
+              <button
+                onClick={() => handleAuth('band')}
+                className="bg-purple-600 hover:bg-purple-500 text-white px-8 py-4 text-xl font-black uppercase italic transition-all transform hover:-translate-y-1 shadow-xl shadow-purple-900/20"
+              >
                 Start Your Tour
               </button>
               <div className="flex flex-col justify-center">
@@ -87,7 +94,10 @@ const LandingPage = () => {
               Fill your empty dates with matched talent. Zero paperwork. Verified stage plots. Day-of-show automated payouts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 text-xl font-black uppercase italic transition-all transform hover:-translate-y-1 shadow-xl shadow-blue-900/20">
+              <button
+                onClick={() => handleAuth('venue')}
+                className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 text-xl font-black uppercase italic transition-all transform hover:-translate-y-1 shadow-xl shadow-blue-900/20"
+              >
                 Fill Your Calendar
               </button>
               <div className="flex flex-col justify-center">
