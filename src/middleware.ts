@@ -1,8 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { auth0 } from "./lib/auth0";
 
-export const runtime = 'nodejs';
-
 export async function middleware(request: NextRequest) {
     try {
         if (request.nextUrl.pathname === '/auth/login') {
