@@ -1,4 +1,6 @@
-import { Auth0Client } from "@auth0/nextjs-auth0/server";
+import { Auth0Client } from "@auth0/nextjs-auth0";
+
+export const runtime = "nodejs";
 
 // Comprehensive fallback for Vercel and local environments
 const getAppBaseUrl = () => {
