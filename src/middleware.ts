@@ -1,7 +1,6 @@
-// import { auth0 } from "./lib/auth0";
-// export default auth0.middleware;
+import { auth0 } from "./lib/auth0";
 
-export default function middleware() { }
+export default auth0.middleware;
 
 
 export const config = {
