@@ -1,5 +1,7 @@
 import { Auth0Client } from "@auth0/nextjs-auth0/server";
 
+export const runtime = "nodejs";
+
 // Comprehensive fallback for Vercel and local environments
 const getAppBaseUrl = () => {
     const url = process.env.AUTH0_BASE_URL ||
