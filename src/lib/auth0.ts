@@ -1,26 +1,28 @@
 import { Auth0Client } from "@auth0/nextjs-auth0/server";
 
-// Fallback for Vercel environments
+// Comprehensive fallback for Vercel and local environments
 const getAppBaseUrl = () => {
-    if (process.env.AUTH0_BASE_URL) return process.env.AUTH0_BASE_URL;
-    if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-    return 'http://localhost:3000';
+    const url = process.env.AUTH0_BASE_URL ||
+        process.env.APP_BASE_URL ||
+        (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null) ||
+        (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
+        'http://localhost:3000';
+
+    return url.startsWith('http') ? url : `https://${url}`;
 };
 
 const appBaseUrl = getAppBaseUrl();
 
-// Basic validation for critical production environment variables
+// Log configuration status (redacted) for production debugging in Vercel records
 if (process.env.NODE_ENV === 'production') {
-    if (!process.env.AUTH0_DOMAIN) console.warn('Missing AUTH0_DOMAIN');
-    if (!process.env.AUTH0_SECRET) console.warn('Missing AUTH0_SECRET');
+    console.log('[Auth0] Initializing with Base URL:', appBaseUrl);
 }
 
 export const auth0 = new Auth0Client({
-    domain: process.env.AUTH0_DOMAIN,
-    clientId: process.env.AUTH0_CLIENT_ID,
-    clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    secret: process.env.AUTH0_SECRET,
+    domain: process.env.AUTH0_DOMAIN || '',
+    clientId: process.env.AUTH0_CLIENT_ID || '',
+    clientSecret: process.env.AUTH0_CLIENT_SECRET || '',
+    secret: process.env.AUTH0_SECRET || '',
     appBaseUrl,
     routes: {
         login: '/auth/login',
