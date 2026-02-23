@@ -32,7 +32,7 @@ const HowItWorks = () => {
                     </div>
 
                     <button className="mt-16 w-full bg-purple-600 py-6 text-2xl font-black uppercase italic hover:bg-purple-500 transition-all shadow-lg shadow-purple-900/20">
-                        Start Your Tour ($99/yr)
+                        Book Your Next Gig ($99/yr)
                     </button>
                 </section>
 

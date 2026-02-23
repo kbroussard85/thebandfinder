@@ -22,3 +22,10 @@ Thumbs.db
 .vercel
 .next/
 /prisma/migrations/
+tsconfig.tsbuildinfo
+
+# Diagnostic Logs
+dev_logs.txt
+debug_middleware.txt
+error_details.json
+lint-fix.txt

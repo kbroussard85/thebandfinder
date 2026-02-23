@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
-import Image from "next/image";
 import { useUser } from '@auth0/nextjs-auth0';
 
+import { Navbar } from '@/components/Navbar';
+
 const LandingPage = () => {
-  const { user } = useUser();
+  useUser();
 
   const handleAuth = (type: 'band' | 'venue') => {
     window.location.href = `/auth/login?screen_hint=signup&targetRole=${type}`;
@@ -13,43 +14,7 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-purple-500">
-      {/* Navigation */}
-      <nav className="flex items-center justify-between px-8 py-6 border-b border-zinc-800 bg-black/50 backdrop-blur-md sticky top-0 z-50">
-        <div className="text-2xl font-black tracking-tighter uppercase italic">
-          Find<span className="text-purple-500">A</span>Band<span className="text-purple-500">Today</span>
-        </div>
-        <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-zinc-400">
-          <a href="/how" className="hover:text-white transition-colors">How it works</a>
-          <a href="/pricing" className="hover:text-white transition-colors">Pricing</a>
-        </div>
-
-        <div className="flex items-center gap-4">
-          {user ? (
-            <div className="flex items-center gap-4">
-              <div className="hidden sm:flex flex-col items-end">
-                <span className="text-xs font-bold uppercase tracking-tighter">{user.name}</span>
-                <a href="/auth/logout" className="text-[10px] text-zinc-500 hover:text-purple-500 uppercase tracking-widest">Logout</a>
-              </div>
-              {user.picture && (
-                <Image
-                  src={user.picture}
-                  alt={user.name || "User"}
-                  width={32}
-                  height={32}
-                  className="rounded-full border border-zinc-700"
-                />
-              )}
-            </div>
-          ) : (
-            <a
-              href="/auth/login"
-              className="bg-white text-black px-6 py-2 text-sm font-bold uppercase tracking-tighter hover:bg-purple-500 hover:text-white transition-all duration-300"
-            >
-              Login
-            </a>
-          )}
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Main Hero Section */}
       <main className="relative flex flex-col md:flex-row min-h-[calc(100vh-80px)]">
@@ -71,7 +36,7 @@ const LandingPage = () => {
                 onClick={() => handleAuth('band')}
                 className="bg-purple-600 hover:bg-purple-500 text-white px-8 py-4 text-xl font-black uppercase italic transition-all transform hover:-translate-y-1 shadow-xl shadow-purple-900/20"
               >
-                Start Your Tour
+                Book Your Next Gig
               </button>
               <div className="flex flex-col justify-center">
                 <span className="text-xs text-zinc-500 uppercase tracking-widest font-bold">Artist Tier</span>
