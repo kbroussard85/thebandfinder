@@ -57,7 +57,7 @@ export async function middleware(request: NextRequest) {
         }
 
         return response;
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Middleware Auth error:', error);
         return NextResponse.next();
     }
