@@ -9,7 +9,8 @@ const LandingPage = () => {
   useUser();
 
   const handleAuth = (type: 'band' | 'venue') => {
-    window.location.href = `/auth/login?screen_hint=signup&targetRole=${type}`;
+    const returnTo = type === 'venue' ? '/onboarding/venue' : '/onboarding/artist';
+    window.location.href = `/auth/login?returnTo=${encodeURIComponent(returnTo)}`;
   };
 
   return (
