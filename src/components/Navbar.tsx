@@ -42,7 +42,8 @@ export const Navbar = () => {
                     <div className="flex items-center gap-4">
                         <div className="hidden sm:flex flex-col items-end">
                             <span className="text-xs font-bold uppercase tracking-tighter">{user.name}</span>
-                            <Link href="/auth/logout" className="text-[10px] text-zinc-500 hover:text-purple-500 uppercase tracking-widest">Logout</Link>
+                            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                            <a href="/auth/logout" className="text-[10px] text-zinc-500 hover:text-purple-500 uppercase tracking-widest">Logout</a>
                         </div>
                         {user.picture && (
                             <NextImage
@@ -55,12 +56,13 @@ export const Navbar = () => {
                         )}
                     </div>
                 ) : (
-                    <Link
+                    /* eslint-disable-next-line @next/next/no-html-link-for-pages */
+                    <a
                         href="/auth/login"
                         className="bg-white text-black px-6 py-2 text-sm font-bold uppercase tracking-tighter hover:bg-purple-500 hover:text-white transition-all duration-300 shadow-lg shadow-white/5"
                     >
                         Login
-                    </Link>
+                    </a>
                 )}
             </div>
         </nav>

@@ -9,12 +9,10 @@ import {
     Music,
     Globe,
     FileText,
-    Star,
     Smartphone,
     CheckCircle2,
     TrendingUp,
-    CreditCard,
-    Target
+    CreditCard
 } from 'lucide-react';
 import Link from 'next/link';
 

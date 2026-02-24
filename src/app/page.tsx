@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from "next/image";
 import { useUser } from '@auth0/nextjs-auth0';
 
 import { Navbar } from '@/components/Navbar';
@@ -10,7 +9,8 @@ const LandingPage = () => {
   useUser();
 
   const handleAuth = (type: 'band' | 'venue') => {
-    window.location.href = `/auth/login?screen_hint=signup&targetRole=${type}`;
+    const returnTo = type === 'venue' ? '/onboarding/venue' : '/onboarding/artist';
+    window.location.href = `/auth/login?returnTo=${encodeURIComponent(returnTo)}`;
   };
 
   return (
